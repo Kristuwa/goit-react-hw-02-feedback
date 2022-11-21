@@ -11,7 +11,7 @@ class FeedbackForm extends Component {
     bad: 0,
   };
 
-  countTotalFeedback = e => {
+  onIncrement = e => {
     const option = e.target.textContent.toLowerCase();
     this.setState(prevState => {
       return {
@@ -20,25 +20,30 @@ class FeedbackForm extends Component {
     });
   };
 
-  render() {
-    const options = Object.keys(this.state);
-    const { good, neutral, bad } = this.state;
-    const total = options.reduce((total, item) => {
+  countTotalFeedback = options => {
+    return options.reduce((total, item) => {
       total += this.state[item];
       return total;
     }, 0);
-    const positivePercentage =
-      total === 0 ? 0 : Number(((good / total) * 100).toFixed(0));
+  };
+
+  countPositiveFeedbackPercentage = total => {
+    return total === 0
+      ? 0
+      : Number(((this.state.good / total) * 100).toFixed(0));
+  };
+
+  render() {
+    const options = Object.keys(this.state);
+    const { good, neutral, bad } = this.state;
+    const total = this.countTotalFeedback(options);
     return (
       <>
         <Section title="Please leave feedback">
-          <FeedbackOptions
-            options={options}
-            onIncrement={this.countTotalFeedback}
-          />
+          <FeedbackOptions options={options} onIncrement={this.onIncrement} />
         </Section>
         <Section title="Statistics">
-          {total === 0 ? (
+          {this.countTotalFeedback(options) === 0 ? (
             <Notification message="There is no feedback" />
           ) : (
             <Statistics
@@ -46,7 +51,7 @@ class FeedbackForm extends Component {
               neutral={neutral}
               bad={bad}
               total={total}
-              positivePercentage={positivePercentage}
+              positivePercentage={this.countPositiveFeedbackPercentage(total)}
             />
           )}
         </Section>
