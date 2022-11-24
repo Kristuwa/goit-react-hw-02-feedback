@@ -7,7 +7,7 @@ const FeedbackOptions = ({ options, onIncrement }) => {
       {options.map(key => {
         return (
           <ButtonsItem key={key}>
-            <Button type="button" onClick={onIncrement}>
+            <Button type="button" onClick={() => onIncrement(key)}>
               {key}
             </Button>
           </ButtonsItem>

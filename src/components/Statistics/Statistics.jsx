@@ -1,31 +1,30 @@
-import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import { StatisticsList, StatisticsItem, Text } from './Statistics.styled.jsx';
 
 const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
   return (
     <StatisticsList>
-      <StatisticsItem key={shortid.generate()}>
+      <StatisticsItem>
         <Text>
           Good: <span>{good}</span>
         </Text>
       </StatisticsItem>
-      <StatisticsItem key={shortid.generate()}>
+      <StatisticsItem>
         <Text>
           Neutral: <span>{neutral}</span>
         </Text>
       </StatisticsItem>
-      <StatisticsItem key={shortid.generate()}>
+      <StatisticsItem>
         <Text>
           Bad: <span>{bad}</span>
         </Text>
       </StatisticsItem>
-      <StatisticsItem key={shortid.generate()}>
+      <StatisticsItem>
         <Text>
           Total: <span>{total}</span>
         </Text>
       </StatisticsItem>
-      <StatisticsItem key={shortid.generate()}>
+      <StatisticsItem>
         <Text>
           Positive feedback: <span>{positivePercentage}%</span>
         </Text>

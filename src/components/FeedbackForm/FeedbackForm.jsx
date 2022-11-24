@@ -11,8 +11,7 @@ class FeedbackForm extends Component {
     bad: 0,
   };
 
-  onIncrement = e => {
-    const option = e.target.textContent.toLowerCase();
+  onIncrement = option => {
     this.setState(prevState => {
       return {
         [option]: prevState[option] + 1,
@@ -43,7 +42,7 @@ class FeedbackForm extends Component {
           <FeedbackOptions options={options} onIncrement={this.onIncrement} />
         </Section>
         <Section title="Statistics">
-          {this.countTotalFeedback(options) === 0 ? (
+          {total === 0 ? (
             <Notification message="There is no feedback" />
           ) : (
             <Statistics
