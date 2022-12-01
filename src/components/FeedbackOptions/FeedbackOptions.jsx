@@ -18,11 +18,7 @@ const FeedbackOptions = ({ options, onIncrement }) => {
 };
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   onIncrement: PropTypes.func.isRequired,
 };
 
